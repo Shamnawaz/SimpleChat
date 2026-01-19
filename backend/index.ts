@@ -1,10 +1,10 @@
 import app from "./src/app";
 import { connectDB } from "./src/config/database";
 
-const PORT = process.env.PORT
+const PORT = Number(process.env.PORT);
 
 connectDB().then(() => {
-    app.listen(PORT || 3000, () => {
+    app.listen(PORT, () => {
         console.log('server is running on port:', PORT);
     })
 })
