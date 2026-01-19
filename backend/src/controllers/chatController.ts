@@ -37,7 +37,7 @@ export async function getOrCreateChat(req: AuthRequest, res: Response, next: Nex
             participants: { $all: [userId, participantId] },
         })
         .populate('participants', 'name email avatar')
-        .populate('lastMessage')
+        .populate('lastMessage');
 
         if(!chat) {
             const newChat = new Chat({ participants: [userId, participantId] });
@@ -45,7 +45,7 @@ export async function getOrCreateChat(req: AuthRequest, res: Response, next: Nex
             chat = await newChat.populate('participants', 'name email avatar');
         }
 
-        const otherParticipant = chat.participants.find((p: any) => p._id.to_string() !== userId);
+        const otherParticipant = chat.participants.find((p) => p._id.toString() !== userId);
 
         res.json({
             _id: chat._id,
@@ -54,8 +54,6 @@ export async function getOrCreateChat(req: AuthRequest, res: Response, next: Nex
             lastMessageAt: chat.lastMessageAt,
             createdAt: chat.createdAt,
         });
-
-        res.json(chat);
     } catch (error) {
         next(error);
     }
