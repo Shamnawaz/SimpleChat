@@ -3,7 +3,6 @@ import type { AuthRequest } from "../middleware/auth";
 import { User } from "../models/User";
 import { clerkClient, getAuth } from "@clerk/express";
 
-// TODO - add next parameter later
 export async function getMe(req: AuthRequest, res: Response, next: NextFunction) {
     try {
         const userId = req.userId;
