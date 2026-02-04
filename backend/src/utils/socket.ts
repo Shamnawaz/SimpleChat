@@ -6,7 +6,7 @@ import { Chat } from "../models/Chat";
 import { User } from "../models/User";
 
 // Store online users in memory : userId -> socketId
-export const onlineUsers: Map<string,Set<string>> = new Map();
+export const onlineUsers: Map<string, Set<string>> = new Map();
 
 export const initializeSocket = (httpServer: HttpServer) => {
 
@@ -16,7 +16,7 @@ export const initializeSocket = (httpServer: HttpServer) => {
         process.env.FRONTEND_URL as string
     ];
 
-    const io = new SocketServer(httpServer, { cors: { origin: allowedOrigin } })
+    const io = new SocketServer(httpServer, { cors: { origin: allowedOrigin } });
 
     // Verify socket connection - if the user is authenticated; we'll store the user id in the socket
 
