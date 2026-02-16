@@ -14,7 +14,7 @@ app.use(express.json()) // Parses incoming JSON request bodies and makes them av
 app.use(clerkMiddleware());
 
 app.get('/health', (req, res) => {
-    res.json({ status: "OK", message: "Server is running" })
+    res.json({ status: "OK", message: "Server is running" });
 });
 
 app.use('/api/auth', authRoutes);
